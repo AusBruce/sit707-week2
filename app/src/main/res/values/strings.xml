@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">MyConvertUnit</string>
+
+    <string-array name="unit_categories">
+        <item>Length</item>
+        <item>Weight</item>
+        <item>Temperature</item>
+    </string-array>
+    <string name="invalid_input">Invalid input</string>
+    <string-array name="length_units">
+        <item>Inches</item>
+        <item>Feet</item>
+        <item>Yards</item>
+        <item>Miles</item>
+        <item>Centimeters</item>
+        <item>Meters</item>
+        <item>Kilometers</item>
+    </string-array>
+
+    <string-array name="weight_units">
+        <item>Ounces</item>
+        <item>Pounds</item>
+        <item>Tons</item>
+        <item>Grams</item>
+        <item>Kilograms</item>
+    </string-array>
+
+    <string-array name="temperature_units">
+        <item>Celsius</item>
+        <item>Fahrenheit</item>
+        <item>Kelvin</item>
+    </string-array>
+</resources>

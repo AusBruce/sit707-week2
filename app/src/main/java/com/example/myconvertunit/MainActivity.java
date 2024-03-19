@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.text.BreakIterator;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         EditText editTextValue = findViewById(R.id.editText_value);
         TextView textViewResult = findViewById(R.id.textView_result);
         Button buttonConvert = findViewById(R.id.button_convert);
+//        textViewResult = findViewById(R.id.textView_result);
 
         setupSpinners(spinnerUnitCategory, spinnerSourceUnit, spinnerDestinationUnit);
 
@@ -79,7 +82,21 @@ public class MainActivity extends AppCompatActivity {
     private void performConversion(Spinner spinnerUnitCategory, Spinner spinnerSourceUnit, Spinner spinnerDestinationUnit, EditText editTextValue, TextView textViewResult) {
         String sourceUnit = spinnerSourceUnit.getSelectedItem().toString();
         String destUnit = spinnerDestinationUnit.getSelectedItem().toString();
+        String inputValue = editTextValue.getText().toString();
         double value;
+        if (inputValue.isEmpty()) {
+            textViewResult.setText("Please enter a value");
+            return;
+        }
+
+        // Try to parse the input value as a double
+//        double value;
+        try {
+            value = Double.parseDouble(inputValue);
+        } catch (NumberFormatException e) {
+            textViewResult.setText("Invalid input. Please enter a numeric value.");
+            return;
+        }
         try {
             value = Double.parseDouble(editTextValue.getText().toString());
         } catch (NumberFormatException e) {
@@ -91,22 +108,12 @@ public class MainActivity extends AppCompatActivity {
         textViewResult.setText(String.format(Locale.getDefault(), "%.2f", result));
     }
 
-//    private boolean isLengthUnit(String unit) {
-//        return unit.matches("Inches|Feet|Yards|Miles|Centimeters|Meters|Kilometers");
-//    }
-//
-//    private boolean isWeightUnit(String unit) {
-//        return unit.matches("Ounces|Pounds|Tons|Grams|Kilograms");
-//    }
-//
-//    private boolean isTemperatureUnit(String unit) {
-//        return unit.matches("Celsius|Fahrenheit|Kelvin");
-//    }
-
-    // Implement the convertLength, convertWeight, and convertTemperature methods here
 
 
     private double convertUnits(String category, String sourceUnit, String destUnit, double value) {
+        // Check if source and destination units are the same
+
+
         switch (category) {
             case "Length":
                 return convertLength(sourceUnit, destUnit, value);
